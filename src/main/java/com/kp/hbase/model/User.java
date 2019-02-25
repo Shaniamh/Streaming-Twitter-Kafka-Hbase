@@ -1,28 +1,33 @@
 package com.kp.hbase.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import twitter4j.Twitter;
 
-public class DataUser {
-	private String description;
-	private long followersCount;
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class User {
+	
+	private String  description;
+	private long    followersCount;
 	private boolean isProtected;
-	private String location;
-	private String name;
+	private String  location;
+	private String  name;
 	private static String possible_root_names;
-	private String profileImageUrl;
-	private String screenName;
+	private String  profileImageUrl;
+	private String  screenName;
 	private static long serialVersionUID;
-	private String statusCreatedAt;
+	private String  statusCreatedAt;
 	private boolean statusFavorited;
-	private long statusId;
-	private String statusInReplyToScreenName;
-	private long statusInReplyToStatusId;
-	private long statusInReplyToUserId;
-	private String statusSource;
-	private String statusText;
+	private long    statusId;
+	private String  statusInReplyToScreenName;
+	private long    statusInReplyToStatusId;
+	private long    statusInReplyToUserId;
+	private String  statusSource;
+	private String  statusText;
 	private boolean statusTruncated;
 	private Twitter twitter;
-	private String url;
+	private String  url;
+	
 	public String getDescription() {
 		return description;
 	}
@@ -57,7 +62,7 @@ public class DataUser {
 		return possible_root_names;
 	}
 	public static void setPossible_root_names(String possible_root_names) {
-		DataUser.possible_root_names = possible_root_names;
+		User.possible_root_names = possible_root_names;
 	}
 	public String getProfileImageUrl() {
 		return profileImageUrl;
@@ -75,7 +80,7 @@ public class DataUser {
 		return serialVersionUID;
 	}
 	public static void setSerialVersionUID(long serialVersionUID) {
-		DataUser.serialVersionUID = serialVersionUID;
+		User.serialVersionUID = serialVersionUID;
 	}
 	public String getStatusCreatedAt() {
 		return statusCreatedAt;

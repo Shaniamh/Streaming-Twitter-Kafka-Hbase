@@ -39,7 +39,6 @@ public class TwitterKafkaProducer {
 		accessSecret   = TwitterConfiguration.accessSecret; 
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 	      cb.setDebugEnabled(true)
-	      
 	         .setOAuthConsumerKey(consumerKey)
 	         .setOAuthConsumerSecret(consumerSecret)
 	         .setOAuthAccessToken(accessToken)
@@ -101,22 +100,23 @@ public class TwitterKafkaProducer {
 	      props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
 	      props.put(ProducerConfig.LINGER_MS_CONFIG, 1);
 	      props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
-	      props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "com.kp.hbase.model.TwSerializer");
-	      props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "com.kp.hbase.model.TwSerializer"); 
+	      props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+	      props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "com.kp.hbase.config.TwitterSerializer"); 
 	      
 	      Producer<String, Tweet> producer = new KafkaProducer<String, Tweet>(props);
+	      int i =0;
 	      int j = 0;
-	      while(true) {
+	      while(i < 10) {
 	         Tweet tw = queue.poll();
 	         
 	         if (tw == null) {
-	        	 
 	            Thread.sleep(100);
-	         }else {
-	   
+	            i++;
+	         } else{
 	               producer.send(new ProducerRecord<String, Tweet>(KafkaConfiguration.topicName, Integer.toString(j++), tw));
 	         }
 	      }
+	      twitterStream.shutdown();
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.kp.hbase;
 
 
+import com.kp.hbase.consumer.TwitterKafkaConsumer;
 import com.kp.hbase.producer.TwitterKafkaProducer;
 
 /**
@@ -13,6 +14,8 @@ public class App
     {
     	
         TwitterKafkaProducer producerKafka = new TwitterKafkaProducer();
+        TwitterKafkaConsumer consumerKafka = new TwitterKafkaConsumer();
         producerKafka.run();
+        consumerKafka.consumer();
     }
 }

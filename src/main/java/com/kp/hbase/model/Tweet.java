@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Tweet {
 	
-	private String created_at;
-	private long id;
-	private String text;
-	private String typePost;
-	private DataUser dataUser;
+	private String   created_at;
+	private long     id;
+	private String   text;
+	private String   typePost;
+	private User user;
 	
 	public String getCreated_at() {
 		return created_at;
@@ -35,15 +35,11 @@ public class Tweet {
 	public void setTypePost(String typePost) {
 		this.typePost = typePost;
 	}
-	public DataUser getDataUser() {
-		return dataUser;
+	public User getUser() {
+		return user;
 	}
-	public void setDataUser(DataUser dataUser) {
-		this.dataUser = dataUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
-
-	
-	
 	
 }
